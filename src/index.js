@@ -4,11 +4,13 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import './index.css';
-import routes from './routes';
-import configureStore from './configureStore.js';
 import * as serviceWorker from './serviceWorker';
+import routes from './routes';
+import configureStore from './configureStore';
+// import { loadMessages } from './actions/messageActions';
 
 const store = configureStore();
+// store.dispatch(loadMessages());
 
 class AppContainer extends Component {
   render() {
