@@ -195,16 +195,14 @@ handleSubmitMessage = () => {
 3. Add some dummy data in the format { text: 'message' }:
 ```
 const messages = [
-  { text: 'Veni' },
-  { text: 'Vidi' },
-  { text: 'Vici' },
+  { text: 'I\'d rather be optimistic and wrong than pessimistic and right.' },
+  { text: 'Nearly all men can stand adversity, but if you want to test a man\'s character, give him power.' },
+  { 'You must unlearn what you have learned.' },
 ];
 ```
 4. Create a getMessages function that returns the dummy data in a promise:
 ```
 export function getMessages() {
-  const response = { success: true };
-
   return new Promise((resolve) => {
     resolve(messages);
   });
@@ -260,4 +258,7 @@ case GET_MESSAGES_SUCCESS:
 ```
 import { loadMessages } from './actions/messageActions';
 ```
-18. Dispatch the thunk (below the instantiation of store)
+18. Dispatch the thunk (below the instantiation of store):
+```
+store.dispatch(loadMessages());
+```

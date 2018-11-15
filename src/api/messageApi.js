@@ -5,8 +5,6 @@ const messages = [
 ];
 
 export function getMessages() {
-  const response = { success: true };
-
   return new Promise((resolve) => {
     resolve(messages);
   });
