@@ -1,6 +1,6 @@
 import {
   POST_MESSAGE,
-  // GET_MESSAGES_SUCCESS,
+  GET_MESSAGES_SUCCESS,
 } from '../actions/constants';
 
 export default function messagesReducer(state = [], action) {
@@ -10,8 +10,8 @@ export default function messagesReducer(state = [], action) {
         ...state,
         Object.assign({}, action.message),
       ];
-    // case GET_MESSAGES_SUCCESS:
-    //   return action.messages;
+    case GET_MESSAGES_SUCCESS:
+      return action.messages;
     default:
       return state;
   }

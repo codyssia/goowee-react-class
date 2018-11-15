@@ -18,7 +18,7 @@ class App extends Component {
 
   handleSubmitMessage = () => {
     const message = { text: this.state.message };
-    this.props.actions.postMessage(message);
+    this.props.messageActions.postMessage(message);
     return this.setState ({ message: '' });
   }
 
@@ -44,7 +44,7 @@ class App extends Component {
 
 App.propTypes = {
   messages: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired,
+  messageActions: PropTypes.object.isRequired,
 }
 
 function mapStateToProps(state, ownProps) {
@@ -55,7 +55,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(messageActions, dispatch),
+    messageActions: bindActionCreators(messageActions, dispatch),
   }
 }
 

@@ -1,3 +1,6 @@
+## BEFORE YOU Start
+This tutorial is set up such that you can skip to any of the modules (React-Router, Redux, Node) if you choose. But in any case, you must complete in the steps in this Getting Started guide.
+
 ## GETTING STARTED
 ### TOOLS:
 * git
@@ -16,12 +19,12 @@
 7. Remove everything inside the <div>
 8. Add a header inside the div with some text
 9. Delete logo.svg
-10. Create a folder called components (inside src)
-11. Move all 3 files beginning with App into components
 
 
 ## REACT ROUTER
 1. Install react-router-dom: `yarn add react-router-dom`
+10. Create a folder called components (inside src)
+11. Move all 3 files beginning with App into components
 2. Open index.js
 2. Add Component to the react import so it looks the import in App.js
 3. Import BrowserRouter and routes (not yet created):

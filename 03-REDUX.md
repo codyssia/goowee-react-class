@@ -1,5 +1,5 @@
 ## REDUX (Part 1)
-1. Install redux, react-redux, and thunk: `yarn add redux react-redux thunk`
+1. Install redux, react-redux, and thunk: `yarn add redux react-redux redux-thunk`
 2. Create a folder called actions (inside src)
 3. Create constants.js (inside actions)
 4. Add and export a POST_MESSAGE constant:
@@ -14,25 +14,29 @@ import { POST_MESSAGE } from './constants';
 7. Create a postMessage action creator:
 ```
 export function postMessage(message) {
-  return {
-    type: POST_MESSAGE,
-    message,
-  }
+
+}
+```
+8. Return the action. Pass in the type (from constants), and the message
+```
+return {
+  type: POST_MESSAGE,
+  message,
 }
 ```
 8. Create a folder called reducers (inside src)
-9. Create reducer.js (inside reducers)
+9. Create messageReducer.js (inside reducers)
 10. Import POST_MESSAGE (from actions/constants.js):
 ```
 import { POST_MESSAGE } from '../actions/constants';
 ```
-11. Create a messagesReducer function, pass in state (with a default param of []) and action, and make this the default export:
+11. Create a messageReducer function, pass in state (with a default param of []) and action, and make this the default export:
 ```
-export default function messagesReducer(state = [], action) {
+export default function messageReducer(state = [], action) {
 
 }
 ```
-12. Add a switch statement inside messagesReducer. Pass in action.type:
+12. Add a switch statement inside messageReducer. Pass in action.type:
 ```
 switch(action.type) {
 
@@ -53,7 +57,7 @@ default:
 15. Create index.js (inside reducers), and add the following:
 ```
 import { combineReducers } from 'redux';
-import messages from './messagesReducer';
+import messages from './messageReducer';
 
 const rootReducer = combineReducers({
   messages,
@@ -103,7 +107,7 @@ import * as messageActions from '../actions/messageActions';
 ```
 export default connect()(App);
 ```
-25. Pass two messages into connect: mapStateToProps and mapDispatchToProps
+25. Pass two parameters into connect: mapStateToProps and mapDispatchToProps
 26. Create the function mapStateToProps, and pass in state and ownProps:
 ```
 function mapStateToProps(state, ownProps) {
@@ -125,7 +129,7 @@ function mapDispatchToProps(dispatch) {
 29. Return actions with bindActionCreators:
 ```
 return {
-  actions: bindActionCreators(actions, dispatch),
+  messageActions: bindActionCreators(messageActions, dispatch),
 }
 ```
 30. Add propTypes and require messages and actions:
@@ -163,7 +167,7 @@ handleChangeMessage = event => {
 ```
 handleSubmitMessage = () => {
   const message = { text: this.state.message };
-  this.props.actions.postMessage(message);
+  this.props.messageActions.postMessage(message);
   return this.setState ({ message: '' });
 }
 ```
@@ -184,3 +188,76 @@ handleSubmitMessage = () => {
 ```
 <p key={i}>{message.text}</p>
 ```
+
+## REDUX (Part 3)
+1. Create an api folder (in src)
+2. Create messageApi.js inside that
+3. Add some dummy data in the format { text: 'message' }:
+```
+const messages = [
+  { text: 'Veni' },
+  { text: 'Vidi' },
+  { text: 'Vici' },
+];
+```
+4. Create a getMessages function that returns the dummy data in a promise:
+```
+export function getMessages() {
+  const response = { success: true };
+
+  return new Promise((resolve) => {
+    resolve(messages);
+  });
+}
+```
+5. Open messageActions.js
+6. import the messageApi:
+```
+import * as messageApi from '../api/messageApi';
+```
+7. Create function called loadMessages (this will be a thunk):
+```
+export function loadMessages() {
+
+}
+```
+8. Return an anonymous function and pass in dispatch:
+```
+return function(dispatch) {
+
+};
+```
+9. Return a call to the api, and getMessages:
+```
+return messageApi.getMessages()
+  .then(messages => {
+
+  });
+```
+10. Dispatch a new getMessagesSuccess action, and pass in the messages:
+```
+dispatch(getMessagesSuccess(messages));
+```
+11. Create the new action, passing in the type, and the messages:
+```
+export function getMessagesSuccess(messages) {
+  return {
+    type: GET_MESSAGES_SUCCESS,
+    messages,
+  };
+}
+```
+12. Add GET_MESSAGES_SUCCESS to the import from constants.js
+13. Open constants.js and export GET_MESSAGES_SUCCESS
+14. Open messageReducer.js and import GET_MESSAGES_SUCCESS
+15. Add it as a new case above the default:
+```
+case GET_MESSAGES_SUCCESS:
+  return action.messages;
+```
+16. Open index.js (in src)
+17. Import the loadMessages thunk:
+```
+import { loadMessages } from './actions/messageActions';
+```
+18. Dispatch the thunk (below the instantiation of store)

@@ -1,8 +1,8 @@
 import {
   POST_MESSAGE,
-  // GET_MESSAGES_SUCCESS,
+  GET_MESSAGES_SUCCESS,
 } from './constants';
-// import * as messageApi from '../api/messageApi';
+import * as messageApi from '../api/messageApi';
 
 // *** ACTIONS *** //
 
@@ -13,20 +13,20 @@ export function postMessage(message) {
   };
 }
 
-// export function getMessagesSuccess(messages) {
-//   return {
-//     type: GET_MESSAGES_SUCCESS,
-//     messages,
-//   };
-// }
+export function getMessagesSuccess(messages) {
+  return {
+    type: GET_MESSAGES_SUCCESS,
+    messages,
+  };
+}
 
 // *** THUNKS *** //
 
-// export function loadMessages() {
-//   return function(dispatch) {
-//     return messageApi.getMessages()
-//       .then(messages => {
-//         dispatch(getMessagesSuccess(messages));
-//       });
-//   };
-// }
+export function loadMessages() {
+  return function(dispatch) {
+    return messageApi.getMessages()
+      .then(messages => {
+        dispatch(getMessagesSuccess(messages));
+      });
+  };
+}

@@ -7,10 +7,10 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import routes from './routes';
 import configureStore from './configureStore';
-// import { loadMessages } from './actions/messageActions';
+import { loadMessages } from './actions/messageActions';
 
 const store = configureStore();
-// store.dispatch(loadMessages());
+store.dispatch(loadMessages());
 
 class AppContainer extends Component {
   render() {

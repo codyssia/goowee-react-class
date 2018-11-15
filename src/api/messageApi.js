@@ -1,7 +1,7 @@
 const messages = [
-  { text: 'One' },
-  { text: 'Two' },
-  { text: 'Three' },
+  { text: 'Veni' },
+  { text: 'Vidi' },
+  { text: 'Vici' },
 ];
 
 export function getMessages() {
