@@ -21,7 +21,6 @@ code {
 
 .Message {
   display: flex;
-  flex
   flex-direction: column;
   align-items: flex-start;
   margin: 20px;
