@@ -40,7 +40,7 @@
 * Add a `<p>` inside the `<div>` and pass in the message `text`: `<p>{message.text}</p>`
 * Check the browser. Check the console. What's wrong?
 * Inside the main component, give the `<Message />` a key of `messages_id`: `key={message.messages_id}`
-* Add styling. Copy index.css from this repo
+* Add styling. Copy the code from /src/index.css in this repo and paste into /src/index.css in your project.
 * Give the `<div>` inside the functional component a class: `className="Message"`
 * Add the user's handle above the message text (include @): `<p>@{message.handle}</p>`
 * Add stars below the text. Start with a `<p></p>`
